@@ -16,7 +16,7 @@ static const int GRID_COLUMNS = 10;
 @implementation Grid {
     NSMutableArray *_gridArray;
     float _cellWidth;
-    float _cellheight;
+    float _cellHeight;
 }
 
 - (void)onEnter {
@@ -31,7 +31,7 @@ static const int GRID_COLUMNS = 10;
 - (void)setupGrid {
     // divide the grid's size by the number of columns/rows to figure out the right width and height of each cell
     _cellWidth = self.contentSize.width / GRID_COLUMNS;
-    _cellheight = self.contentSize.height / GRID_ROWS;
+    _cellHeight = self.contentSize.height / GRID_ROWS;
     
     float x = 0;
     float y = 0;
@@ -60,8 +60,28 @@ static const int GRID_COLUMNS = 10;
             x += _cellWidth;
         }
         
-        y += _cellheight;
+        y += _cellHeight;
     }
+}
+
+- (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    //get the x,y coordinates of the touch
+    CGPoint touchLocation = [touch locationInNode:self];
+    
+    // get the Creature at that location
+    Creature *creature = [self creatureForTouchPosition:touchLocation];
+    
+    //invert it's state - kill it if it's alive, bring it to life if it's dead.
+    creature.isAlive = !creature.isAlive;
+}
+
+- (Creature *)creatureForTouchPosition:(CGPoint)touchPosition
+{
+    // get the row and colum that was touched, returen the Creature inside the corresponding cell
+    int row = touchPosition.y / _cellHeight;
+    int column = touchPosition.x / _cellWidth;
+    
+    return _gridArray[row][column];
 }
 
 @end
