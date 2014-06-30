@@ -92,7 +92,7 @@ static const int GRID_COLUMNS = 10;
     [self updateCreatures];
     
     // update the generation so the label's text will display the correct generation
-    generation++;
+    _generation++;
 }
 
 - (void)countNeighbors {
