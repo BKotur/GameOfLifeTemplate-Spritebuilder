@@ -48,7 +48,6 @@ static const int GRID_COLUMNS = 10;
         for (int j = 0; j < GRID_COLUMNS; j++) {
             Creature *creature = [[Creature alloc] initCreature];
             creature.anchorPoint = ccp(0, 0);
-            y += 1;
             creature.position = ccp(x, y);
             [self addChild:creature];
             
@@ -56,7 +55,7 @@ static const int GRID_COLUMNS = 10;
             _gridArray[i][j] = creature;
             
             // make creatures visible to test this method, remove this once we know we have filled the grid properly
-            creature.isAlive = YES;
+            //creature.isAlive = YES;
             
             x += _cellWidth;
         }
