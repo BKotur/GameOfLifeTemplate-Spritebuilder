@@ -13,7 +13,7 @@
 @property (nonatomic, assign) int totalAlive;
 @property (nonatomic, assign) int generation;
 
--(void)evolveStep;
+-(void)evolveStep : CCSprite;
 -(void)countNeighbors;
 -(void)updateCreatures;
 

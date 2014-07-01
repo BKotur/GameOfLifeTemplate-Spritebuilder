@@ -84,7 +84,7 @@ static const int GRID_COLUMNS = 10;
     return _gridArray[row][column];
 }
 
-- (void)evolveStep (CCSprite *)CCSprite {
+- (void)evolveStep : CCSprite {
     // update each Creature's neighbor count
     [self countNeighbors];
     
