@@ -17,17 +17,6 @@ static const int GRID_COLUMNS = 10;
     NSMutableArray *_gridArray;
     float _cellWidth;
     float _cellHeight;
-    
-    - (void)evolveStep {
-        // update each Creature's neighbor count
-        [self countNeighbors];
-        
-        // update each Creature's state
-        [self updateCreatures];
-        
-        // update the generation so the label's text will display the correct generation
-        _generation++;
-    }
 }
 
 - (void)onEnter {
@@ -37,6 +26,17 @@ static const int GRID_COLUMNS = 10;
     
     // accept touches on the grid
     self.userInteractionEnabled = YES;
+}
+
+- (void)evolveStep {
+    // update each Creature's neighbor count
+    [self countNeighbors];
+    
+    // update each Creature's state
+    [self updateCreatures];
+    
+    // update the generation so the label's text will display the correct generation
+    _generation++;
 }
 
 - (void)setupGrid {
