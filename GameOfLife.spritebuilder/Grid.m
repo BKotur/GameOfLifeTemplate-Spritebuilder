@@ -148,10 +148,11 @@ static const int GRID_COLUMNS = 10;
         for (int j = 0; j < [_gridArray[i] count]; j++) {
             // access the creature in the cell that corresponds to the current row/column
             Creature *currentCreature = _gridArray[i][j];
-            
+            if (currentCreature.isAlive) {
+                numAlive++;
+            }
             if (currentCreature.livingNeighbors == 3) {
                 currentCreature.isAlive = YES;
-                numAlive++;
             } else if (currentCreature.livingNeighbors < 2 || currentCreature.livingNeighbors > 4) {
                 currentCreature.isAlive = NO;
             }
