@@ -28,17 +28,6 @@ static const int GRID_COLUMNS = 10;
     self.userInteractionEnabled = YES;
 }
 
-+ (void)evolveStep {
-    // update each Creature's neighbor count
-    [self countNeighbors];
-    
-    // update each Creature's state
-    [self updateCreatures];
-    
-    // update the generation so the label's text will display the correct generation
-    _generation++;
-}
-
 - (void)setupGrid {
     // divide the grid's size by the number of columns/rows to figure out the right width and height of each cell
     _cellWidth = self.contentSize.width / GRID_COLUMNS;
@@ -95,8 +84,18 @@ static const int GRID_COLUMNS = 10;
     return _gridArray[row][column];
 }
 
++ (void)evolveStep {
+    // update each Creature's neighbor count
+    [self countNeighbors];
+    
+    // update each Creature's state
+    [self updateCreatures];
+    
+    // update the generation so the label's text will display the correct generation
+    _generation++;
+}
 
-- (void)countNeighbors {
++ (void)countNeighbors {
     // iterate through the rows
     //note that NSArray has a method 'count' that will return the number of elements in the array
     for (int i = 0; i < [_gridArray count]; i++) {
@@ -141,7 +140,7 @@ static const int GRID_COLUMNS = 10;
     return isIndexValid;
 }
 
-- (void)updateCreatures {
++ (void)updateCreatures {
     for (int i = 0; i < [_gridArray count]; i++) {
         //iterate through all the columns for a given row
         for (int j = 0; j < [_gridArray[i] count]; j++) {
